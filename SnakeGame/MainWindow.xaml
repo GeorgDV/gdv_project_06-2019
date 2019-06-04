@@ -5,18 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeGame"
         mc:Ignorable="d"
-        Title="Snake-Game" Height="760" Width="677" MouseDown="Window_MouseDown" KeyDown="Window_KeyDown" ResizeMode="NoResize">
+        Title="Snake-Game" Height="760" Width="677" KeyDown="Window_KeyDown">
     <Grid>
         <Canvas x:Name="GameBoard" Background="LimeGreen" Height="660" Width="660" VerticalAlignment="Top">
             <Rectangle
-                Name="rectangle1"
+                Name="snake"
                 Width="30" Height="30" 
-                Stroke="DarkGreen" StrokeThickness="5"
+                Stroke="DeepSkyBlue" StrokeThickness="5"
                 Canvas.Top="30" Canvas.Left="30"
-                Fill="Gold">
+                Fill="DodgerBlue"
+                Panel.ZIndex="10">
+            </Rectangle>
+            <Rectangle
+                Name="apple"
+                Width="20" Height="20"
+                Stroke="DarkRed" StrokeThickness="2"
+                Fill="Red"
+                Panel.ZIndex="9"
+                Canvas.Left="95" Canvas.Top="35">
             </Rectangle>
         </Canvas>
-        <Canvas x:Name="ScoreBoard" Background="LightGreen" Height="60" Width="670" VerticalAlignment="Bottom">
+        <Canvas x:Name="ScoreBoard" Background="LightSeaGreen" Height="61" Width="670" VerticalAlignment="Bottom">
+            <Label Content="Score:" Height="38" Canvas.Left="20" Canvas.Top="12" Width="90" FontFamily="Showcard Gothic" FontSize="24"/>
+            <Label Name="ScoreNumber" Content="" Height="38" Width="130" Canvas.Left="115" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24"/>
+            <Label Content="Apples:" Height="38" Canvas.Left="470" Canvas.Top="12" Width="105" FontFamily="Showcard Gothic" FontSize="24"/>
+            <Label Name ="ApplesNumber" Content="" Height="38" Width="80" Canvas.Left="580" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24"/>
         </Canvas>
     </Grid>
 </Window>
