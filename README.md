@@ -1,6 +1,8 @@
-# gdv_project_06-2019
+﻿# gdv_project_06-2019
 Praktikaprojekt 2019 - Georg Daniel Vahtramäe.
 
-Decide what game to make...
+..
 
-Decide what to do... again...
+..
+
+This message was edited on my home computer..
