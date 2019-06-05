@@ -25,11 +25,11 @@
                 Canvas.Left="95" Canvas.Top="35">
             </Rectangle>
         </Canvas>
-        <Canvas x:Name="ScoreBoard" Background="LightSeaGreen" Height="61" Width="670" VerticalAlignment="Bottom">
-            <Label Content="Score:" Height="38" Canvas.Left="20" Canvas.Top="12" Width="90" FontFamily="Showcard Gothic" FontSize="24"/>
-            <Label Name="ScoreNumber" Content="" Height="38" Width="130" Canvas.Left="115" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24"/>
-            <Label Content="Apples:" Height="38" Canvas.Left="470" Canvas.Top="12" Width="105" FontFamily="Showcard Gothic" FontSize="24"/>
-            <Label Name ="ApplesNumber" Content="" Height="38" Width="80" Canvas.Left="580" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24"/>
+        <Canvas x:Name="ScoreBoard" Background="FloralWhite" Height="61" Width="670" VerticalAlignment="Bottom">
+            <Label Content="Score:" Height="38" Canvas.Left="10" Canvas.Top="12" Width="90" FontFamily="Showcard Gothic" FontSize="24"/>
+            <Label Name="ScoreNumber" Content="" Height="38" Width="100" Canvas.Left="105" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24"/>
+            <Label Content="Apples:" Height="38" Canvas.Left="500" Canvas.Top="12" Width="105" FontFamily="Showcard Gothic" FontSize="24"/>
+            <Label Name ="ApplesNumber" Content="" Height="38" Width="50" Canvas.Left="610" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24"/>
         </Canvas>
     </Grid>
 </Window>
