@@ -1,0 +1,85 @@
+﻿<Window x:Class="SnakeGame.MenuScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakeGame"
+        mc:Ignorable="d"
+        Title="Menu" Height="458" Width="458" FontFamily="Showcard Gothic" FontSize="24">
+    <Canvas Background="LightSkyBlue" 
+            Width="442"
+            Height="419">
+        <Rectangle
+                Name="snake"
+                Width="30" Height="30" 
+                Stroke="DeepSkyBlue" StrokeThickness="4" 
+                Fill="MediumBlue"
+                Panel.ZIndex="10"
+                Canvas.Top="77" Canvas.Left="139"
+                RadiusX="10"
+                RadiusY="10">
+        </Rectangle>
+        <Rectangle
+                Name="snakebody1"
+                Width="30" Height="30" 
+                Stroke="DeepSkyBlue" StrokeThickness="4" 
+                Fill="DodgerBlue"
+                Panel.ZIndex="10"
+                Canvas.Top="77" Canvas.Left="169"
+                RadiusX="10"
+                RadiusY="10">
+        </Rectangle>
+        <Rectangle
+                Name="snakebody2"
+                Width="30" Height="30" 
+                Stroke="DeepSkyBlue" StrokeThickness="4" 
+                Fill="DodgerBlue"
+                Panel.ZIndex="10"
+                Canvas.Top="77" Canvas.Left="199"
+                RadiusX="10"
+                RadiusY="10">
+        </Rectangle>
+        <Rectangle
+                Name="snakebody3"
+                Width="30" Height="30" 
+                Stroke="DeepSkyBlue" StrokeThickness="4" 
+                Fill="DodgerBlue"
+                Panel.ZIndex="10"
+                Canvas.Top="77" Canvas.Left="229"
+                RadiusX="10"
+                RadiusY="10">
+        </Rectangle>
+        <Rectangle
+                Name="snakebody4"
+                Width="30" Height="30" 
+                Stroke="DeepSkyBlue" StrokeThickness="4" 
+                Fill="DodgerBlue"
+                Panel.ZIndex="10"
+                Canvas.Top="77" Canvas.Left="259"
+                RadiusX="10"
+                RadiusY="10">
+        </Rectangle>
+        <Label
+            x:Name="Snake_Game"
+            Canvas.Top="10" Canvas.Left="95"
+            Width="240" Height="62" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" FontFamily="Showcard Gothic" FontSize="36" Content="Snake-Game"
+            />
+        <Label
+            x:Name="Misc1"
+            Canvas.Top="0" Canvas.Left="0"
+            Width="60" Height="419" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" Content=""
+            />
+        <Label
+            x:Name="Misc2"
+            Canvas.Top="0" Canvas.Left="382"
+            Width="60" Height="419" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" Content=""
+            />
+        <Label
+            x:Name="Credit"
+            Canvas.Top="389" Canvas.Left="139"
+            Width="150" Height="30" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" Content="GDV Project. TPT 06-2019." FontSize="10"
+            />
+        <Button x:Name="StartGame" Content="Start Game" Height="60" Canvas.Left="139" Canvas.Top="168" Width="150" Background="DeepSkyBlue" FontFamily="Showcard Gothic" FontSize="24" RenderTransformOrigin="0.5,0.5" BorderBrush="DarkBlue" BorderThickness="4" Click="StartGame_Click"/>
+        <Button x:Name="ExitGame" Content="Quit" Height="60" Canvas.Left="139" Canvas.Top="233" Width="150" Background="DeepSkyBlue" FontFamily="Showcard Gothic" FontSize="24" RenderTransformOrigin="0.5,0.5" BorderBrush="DarkBlue" BorderThickness="4" Click="ExitGame_Click"/>
+    </Canvas>
+</Window>

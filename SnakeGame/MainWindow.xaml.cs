@@ -25,10 +25,10 @@ namespace SnakeGame
         string moveDir = "Right";
         bool GameOver = false;
 
-        public DispatcherTimer dTimer = new DispatcherTimer();
-
         public double XLines = 22;
         public double YLines = 22;
+
+        public DispatcherTimer dTimer = new DispatcherTimer();
 
         public int Score = 0;
         public int DifficultyScore = 0;
@@ -37,8 +37,7 @@ namespace SnakeGame
 
         public int TimerMsec = 300;
 
-        List<UIElement> snakeBody = new List<UIElement>();
-        List<double> bodyPartsCoordinates = new List<double>();
+        List<UIElement> bodyParts = new List<UIElement>();
 
         public MainWindow()
         {
@@ -49,12 +48,10 @@ namespace SnakeGame
 
             DrawBoard(XLines, YLines, XSpace, YSpace);
             InitSnake();
+            AppleChange(XSpace);
             dTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dTimer.Interval = new TimeSpan(0, 0, 0, 0, TimerMsec);
-            dTimer.Start();
-            MoveApple(XSpace);
-            
-            
+            dTimer.Start();            
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -81,6 +78,7 @@ namespace SnakeGame
 
         public void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            double XSpace = GameBoard.Width / XLines;
             double currentTop = Canvas.GetTop(snake);
             double currentLeft = Canvas.GetLeft(snake);
             if (moveDir == "Up")
@@ -107,6 +105,7 @@ namespace SnakeGame
                 MessageBox.Show("Your score: " + Score, "Game over.", MessageBoxButton.OK);
                 Application.Current.Shutdown();
             }
+            SnakeBodyChanges();
             CheckIfAppleHit();
 
             if (DifficultyScore >= 100)
@@ -209,7 +208,7 @@ namespace SnakeGame
             Canvas.SetLeft(snake, GameBoard.Width / 2);
         }
 
-        private void MoveApple(double XSpace)
+        private void AppleChange(double XSpace)
         {
             Random rnd = new Random();
             int appleY = rnd.Next(1, (int)XLines - 1);
@@ -237,26 +236,87 @@ namespace SnakeGame
                 AppleColor = "red";
             }
 
-            do
+            foreach (UIElement body in bodyParts)
             {
-                Canvas.SetTop(apple, XSpace * appleY + 5);
-                Canvas.SetLeft(apple, XSpace * appleX + 5);
+                double bodyPartTop = Canvas.GetTop(body);
+                double bodyPartLeft = Canvas.GetLeft(body);
+
+                do
+                {
+                    Canvas.SetTop(apple, XSpace * appleY + 5);
+                    Canvas.SetLeft(apple, XSpace * appleX + 5);
+                }
+                while (XSpace * appleY == snakeCurrTop && XSpace * appleX == snakeCurrLeft);
             }
-            while ((XSpace * appleY) == snakeCurrTop && (XSpace * appleX) == snakeCurrLeft);
+            
         }
 
         public bool CheckIfGameOver(double GameBoardW, double GameBoardH, bool GameOver)
         {
             double snakeCurrTop = Canvas.GetTop(snake);
             double snakeCurrLeft = Canvas.GetLeft(snake);
-            if (snakeCurrLeft < 0 || snakeCurrLeft >= GameBoardW ||
-                snakeCurrTop < 0 || snakeCurrTop >= GameBoardH)
+
+            foreach (UIElement body in bodyParts)
             {
-                GameOver = true;
+                double bodyPartTop = Canvas.GetTop(body);
+                double bodyPartLeft = Canvas.GetLeft(body);
+
+                if ((snakeCurrTop == bodyPartTop) && (snakeCurrLeft == bodyPartLeft) && (body.Visibility == Visibility.Visible))
+                {
+                    GameOver = true;
+                }
             }
-            else
-                GameOver = false;
+
+            if (GameOver != true)
+            {
+                if (snakeCurrLeft < 0 || snakeCurrLeft >= GameBoardW ||
+                snakeCurrTop < 0 || snakeCurrTop >= GameBoardH)
+                {
+                    GameOver = true;
+                }
+                else
+                {
+                    GameOver = false;
+                }
+            }
+
             return GameOver;
+        }
+
+        private void SnakeBodyChanges()
+        {
+            double XSpace = GameBoard.Width / XLines;
+            double snakeCurrTop = Canvas.GetTop(snake);
+            double snakeCurrLeft = Canvas.GetLeft(snake);
+
+            Rectangle bodyPart = new Rectangle();
+            bodyPart.Width = XSpace;
+            bodyPart.Height = XSpace;
+            bodyPart.Fill = Brushes.DodgerBlue;
+            bodyPart.Stroke = Brushes.DeepSkyBlue;
+            bodyPart.StrokeThickness = 5;
+            bodyPart.RadiusX = 10;
+            bodyPart.RadiusY = 10;
+            Panel.SetZIndex(bodyPart, 9);
+            Canvas.SetTop(bodyPart, snakeCurrTop);
+            Canvas.SetLeft(bodyPart, snakeCurrLeft);
+            GameBoard.Children.Add(bodyPart);
+
+            bodyParts.Add(bodyPart);
+
+            foreach (UIElement body in bodyParts)
+            {
+                body.Visibility = Visibility.Collapsed;
+            }
+
+            int lastBodyPart = bodyParts.Count - 1;
+            for (int i = 0; i <= AppleCount; i++)
+            {
+                bodyParts[lastBodyPart].Visibility = Visibility.Visible;
+                lastBodyPart--;
+            }
+            bodyParts[bodyParts.Count - 1].Visibility = Visibility.Collapsed;
+
         }
 
         private void CheckIfAppleHit()
@@ -288,51 +348,7 @@ namespace SnakeGame
                 ScoreNumber.Content = Score;
                 ApplesNumber.Content = AppleCount;
 
-                ////TODO (SNAKE LENGTH CHANGING)
-                //Rectangle bodyPart = new Rectangle();
-                //bodyPart.Fill = Brushes.DodgerBlue;
-                //bodyPart.Stroke = Brushes.DeepSkyBlue;
-                //bodyPart.StrokeThickness = 5;
-                //bodyPart.Width = 30;
-                //bodyPart.Height = 30;
-                //Canvas.SetZIndex(bodyPart, 10);
-                //double bodyPartTop = 0;
-                //double bodyPartLeft = 0;
-                //if (snakeBody.Count > 0)
-                //{
-                //    bodyPartTop = Canvas.GetTop(snakeBody[snakeBody.Count - 1]);
-                //    bodyPartLeft = Canvas.GetLeft(snakeBody[snakeBody.Count - 1]);
-                //}
-                //else
-                //{
-                //    bodyPartTop = snakeCurrTop;
-                //    bodyPartLeft = snakeCurrLeft;
-                //}
-                
-                //snakeBody.Add(bodyPart);
-
-                //for (int i = 0; i < snakeBody.Count; i++)
-                //{
-                //    if (moveDir == "Up")
-                //    {
-                //        Canvas.SetTop(snakeBody[i], bodyPartTop + 30);
-                //    }
-                //    else if (moveDir == "Down")
-                //    {
-                //        Canvas.SetTop(snakeBody[i], bodyPartTop - 30);
-                //    }
-                //    else if (moveDir == "Left")
-                //    {
-                //        Canvas.SetLeft(snakeBody[i], bodyPartLeft + 30);
-                //    }
-                //    else if (moveDir == "Right")
-                //    {
-                //        Canvas.SetLeft(snakeBody[i], bodyPartLeft - 30);
-                //    }
-                //    GameBoard.Children.Add(bodyPart);
-                //}
-
-                MoveApple(XSpace);
+                AppleChange(XSpace);
             }
         }
 

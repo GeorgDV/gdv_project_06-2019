@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeGame"
         mc:Ignorable="d"
-        Title="Snake-Game" Height="760" Width="677" KeyDown="Window_KeyDown">
+        Title="Snake-Game" Height="760" Width="677" KeyDown="Window_KeyDown" FontFamily="Showcard Gothic" FontSize="12">
     <Grid>
         <Canvas x:Name="GameBoard" Background="LimeGreen" Height="660" Width="660" VerticalAlignment="Top">
             <Rectangle
                 Name="snake"
                 Width="30" Height="30" 
-                Stroke="DeepSkyBlue" StrokeThickness="5"
+                Stroke="DeepSkyBlue" StrokeThickness="4" 
+                Fill="MediumBlue"
+                Panel.ZIndex="10"
                 Canvas.Top="30" Canvas.Left="30"
-                Fill="DodgerBlue"
-                Panel.ZIndex="10">
+                RadiusX="10"
+                RadiusY="10">
             </Rectangle>
             <Rectangle
                 Name="apple"
@@ -22,7 +24,9 @@
                 Stroke="DarkRed" StrokeThickness="2"
                 Fill="Red"
                 Panel.ZIndex="9"
-                Canvas.Left="95" Canvas.Top="35">
+                Canvas.Left="95" Canvas.Top="35"
+                RadiusX="10"
+                RadiusY="10">
             </Rectangle>
         </Canvas>
         <Canvas x:Name="ScoreBoard" Background="FloralWhite" Height="61" Width="670" VerticalAlignment="Bottom">
