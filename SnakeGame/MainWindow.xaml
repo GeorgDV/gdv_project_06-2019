@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeGame"
         mc:Ignorable="d"
-        Title="Snake-Game" Height="736" Width="675" KeyDown="Window_KeyDown" FontFamily="Showcard Gothic" FontSize="12" WindowStyle="None">
+        Title="Snake-Game" Height="735" Width="675" KeyDown="Window_KeyDown" FontFamily="Showcard Gothic" FontSize="12" WindowStyle="None">
     <Grid>
         <Canvas x:Name="GameBoard" Background="LimeGreen" Height="660" Width="660" VerticalAlignment="Top">
             <Rectangle
@@ -30,18 +30,18 @@
             </Rectangle>
         </Canvas>
         <Canvas x:Name="ScoreBoard" Background="LightSkyBlue" Height="61" Width="670" VerticalAlignment="Bottom" Margin="-1,0,0,1">
-            <Label Content="Score:" Height="38" Canvas.Left="22" Canvas.Top="12" Width="90" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue"/>
-            <Label Name="ScoreNumber" Content="" Height="38" Width="50" Canvas.Left="117" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue"/>
-            <Label Content="Apples:" Height="38" Canvas.Left="493" Canvas.Top="12" Width="105" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue"/>
-            <Label Name ="ApplesNumber" Content="" Height="38" Width="50" Canvas.Left="603" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue"/>
-            <Label x:Name="SnakeGameTitle" Content="Snake-Game" Height="56" Width="230" Canvas.Left="215" FontFamily="Showcard Gothic" FontSize="34" Foreground="MidnightBlue" Background="DodgerBlue" BorderBrush="DeepSkyBlue" BorderThickness="4" Canvas.Top="3"/>
+            <Label Content="Score:" Height="38" Canvas.Left="11" Canvas.Top="12" Width="90" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue"/>
+            <Label Name="ScoreNumber" Content="" Height="38" Width="68" Canvas.Left="105" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue" HorizontalContentAlignment="Center"/>
+            <Label Content="Apples:" Height="38" Canvas.Left="498" Canvas.Top="12" Width="102" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue"/>
+            <Label Name ="ApplesNumber" Content="" Height="38" Width="55" Canvas.Left="602" Canvas.Top="12" FontFamily="Showcard Gothic" FontSize="24" Foreground="MidnightBlue" HorizontalContentAlignment="Center"/>
+            <Label x:Name="SnakeGameTitle" Content="Snake-Game" Height="56" Width="230" Canvas.Left="220" FontFamily="Showcard Gothic" FontSize="34" Foreground="MidnightBlue" Background="DodgerBlue" BorderBrush="DeepSkyBlue" BorderThickness="4" Canvas.Top="3"/>
             <Rectangle
                 x:Name="snake_Copy1"
                 Width="38" Height="38" 
                 Stroke="DeepSkyBlue" StrokeThickness="4" 
                 Fill="MediumBlue"
                 Panel.ZIndex="10"
-                Canvas.Top="12" Canvas.Left="450"
+                Canvas.Top="12" Canvas.Left="455"
                 RadiusX="10"
                 RadiusY="10"/>
             <Rectangle
@@ -50,7 +50,7 @@
                 Stroke="DeepSkyBlue" StrokeThickness="4" 
                 Fill="MediumBlue"
                 Panel.ZIndex="10"
-                Canvas.Top="12" Canvas.Left="172"
+                Canvas.Top="12" Canvas.Left="177"
                 RadiusX="10"
                 RadiusY="10"/>
         </Canvas>
