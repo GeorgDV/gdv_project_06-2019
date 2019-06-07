@@ -62,7 +62,7 @@
         <Label
             x:Name="Snake_Game"
             Canvas.Top="10" Canvas.Left="95"
-            Width="240" Height="62" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" FontFamily="Showcard Gothic" FontSize="36" Content="Snake-Game"
+            Width="240" Height="62" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" FontFamily="Showcard Gothic" FontSize="36" Content="Snake-Game" Foreground="MidnightBlue"
             />
         <Label
             x:Name="Misc1"
@@ -77,9 +77,9 @@
         <Label
             x:Name="Credit"
             Canvas.Top="389" Canvas.Left="139"
-            Width="150" Height="30" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" Content="GDV Project. TPT 06-2019." FontSize="10"
+            Width="150" Height="30" Background="DeepSkyBlue" BorderBrush="DarkBlue" BorderThickness="4" Content="GDV Project. TPT 06-2019." FontSize="10" Foreground="MidnightBlue"
             />
-        <Button x:Name="StartGame" Content="Start Game" Height="60" Canvas.Left="139" Canvas.Top="168" Width="150" Background="DeepSkyBlue" FontFamily="Showcard Gothic" FontSize="24" RenderTransformOrigin="0.5,0.5" BorderBrush="DarkBlue" BorderThickness="4" Click="StartGame_Click"/>
-        <Button x:Name="ExitGame" Content="Quit" Height="60" Canvas.Left="139" Canvas.Top="233" Width="150" Background="DeepSkyBlue" FontFamily="Showcard Gothic" FontSize="24" RenderTransformOrigin="0.5,0.5" BorderBrush="DarkBlue" BorderThickness="4" Click="ExitGame_Click"/>
+        <Button x:Name="StartGame" Content="Start Game" Height="60" Canvas.Left="139" Canvas.Top="168" Width="150" Background="DeepSkyBlue" FontFamily="Showcard Gothic" FontSize="24" RenderTransformOrigin="0.5,0.5" BorderBrush="DarkBlue" BorderThickness="4" Click="StartGame_Click" Foreground="MidnightBlue"/>
+        <Button x:Name="ExitGame" Content="Quit" Height="60" Canvas.Left="139" Canvas.Top="233" Width="150" Background="DeepSkyBlue" FontFamily="Showcard Gothic" FontSize="24" RenderTransformOrigin="0.5,0.5" BorderBrush="DarkBlue" BorderThickness="4" Click="ExitGame_Click" Foreground="MidnightBlue"/>
     </Canvas>
 </Window>

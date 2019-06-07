@@ -32,6 +32,7 @@ namespace SnakeGame
         {
             mainWindow.Show();
             mainWindow.dTimer.Start();
+            this.Close();
         }
 
         private void ExitGame_Click(object sender, RoutedEventArgs e)

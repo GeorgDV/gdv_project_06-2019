@@ -35,9 +35,12 @@ namespace SnakeGame
         public int AppleCount = 0;
         public string AppleColor = "";
 
-        public int TimerMsec = 300;
+        public int TimerMsec = 275;
 
         List<UIElement> bodyParts = new List<UIElement>();
+        List<double> bodyPartsYX = new List<double>();
+
+        public bool AppleIsOnSnake = false;
 
         public MainWindow()
         {
@@ -105,8 +108,11 @@ namespace SnakeGame
                 MessageBox.Show("Your score: " + Score, "Game over.", MessageBoxButton.OK);
                 Application.Current.Shutdown();
             }
+            System.Threading.Thread.Sleep(5);
             SnakeBodyChanges();
+            System.Threading.Thread.Sleep(5);
             CheckIfAppleHit();
+            System.Threading.Thread.Sleep(5);
 
             if (DifficultyScore >= 100)
             {
@@ -210,45 +216,63 @@ namespace SnakeGame
 
         private void AppleChange(double XSpace)
         {
+            System.Threading.Thread.Sleep(5);
             Random rnd = new Random();
             int appleY = rnd.Next(1, (int)XLines - 1);
             int appleX = rnd.Next(1, (int)YLines - 1);
             double snakeCurrTop = Canvas.GetTop(snake);
             double snakeCurrLeft = Canvas.GetLeft(snake);
 
-            int Color = rnd.Next(12);
-            if (Color <= 3) //GREEN
+            if (AppleIsOnSnake == false)
             {
-                apple.Fill = Brushes.Green;
-                apple.Stroke = Brushes.ForestGreen;
-                AppleColor = "green";
-            }
-            else if (Color == 4) //YELLOW
-            {
-                apple.Fill = Brushes.Yellow;
-                apple.Stroke = Brushes.Gold;
-                AppleColor = "yellow";
-            }
-            else //RED
-            {
-                apple.Fill = Brushes.Red;
-                apple.Stroke = Brushes.DarkRed;
-                AppleColor = "red";
-            }
-
-            foreach (UIElement body in bodyParts)
-            {
-                double bodyPartTop = Canvas.GetTop(body);
-                double bodyPartLeft = Canvas.GetLeft(body);
-
-                do
+                int Color = rnd.Next(12);
+                if (Color <= 3) //GREEN
                 {
-                    Canvas.SetTop(apple, XSpace * appleY + 5);
-                    Canvas.SetLeft(apple, XSpace * appleX + 5);
+                    apple.Fill = Brushes.Green;
+                    apple.Stroke = Brushes.ForestGreen;
+                    AppleColor = "green";
                 }
-                while (XSpace * appleY == snakeCurrTop && XSpace * appleX == snakeCurrLeft);
+                else if (Color == 4) //YELLOW
+                {
+                    apple.Fill = Brushes.Yellow;
+                    apple.Stroke = Brushes.Gold;
+                    AppleColor = "yellow";
+                }
+                else //RED
+                {
+                    apple.Fill = Brushes.Red;
+                    apple.Stroke = Brushes.DarkRed;
+                    AppleColor = "red";
+                }
             }
-            
+
+            CheckIfAppleOnSnake(appleX, appleY, XSpace);           
+        }
+
+        private void CheckIfAppleOnSnake(int appleX, int appleY, double XSpace)
+        {
+            double snakeCurrTop = Canvas.GetTop(snake);
+            double snakeCurrLeft = Canvas.GetLeft(snake);
+            int bodyPartIndex = 0;
+
+            Canvas.SetTop(apple, XSpace * appleY + 5);
+            Canvas.SetLeft(apple, XSpace * appleX + 5);
+
+            System.Threading.Thread.Sleep(5);
+            for (int i = 0; i < bodyPartsYX.Count; i += 2)
+            {
+                if ((appleY * XSpace == bodyPartsYX[i]) && (appleX * XSpace == bodyPartsYX[i + 1]) && (bodyParts[bodyPartIndex].Visibility == Visibility.Visible))
+                {
+                    AppleIsOnSnake = true;
+                    AppleChange(XSpace);
+                }
+                else
+                {
+                    AppleIsOnSnake = false;
+                }
+                bodyPartIndex++;
+            }
+
         }
 
         public bool CheckIfGameOver(double GameBoardW, double GameBoardH, bool GameOver)
@@ -303,6 +327,8 @@ namespace SnakeGame
             GameBoard.Children.Add(bodyPart);
 
             bodyParts.Add(bodyPart);
+            bodyPartsYX.Add(snakeCurrTop);
+            bodyPartsYX.Add(snakeCurrLeft);
 
             foreach (UIElement body in bodyParts)
             {
@@ -315,8 +341,6 @@ namespace SnakeGame
                 bodyParts[lastBodyPart].Visibility = Visibility.Visible;
                 lastBodyPart--;
             }
-            bodyParts[bodyParts.Count - 1].Visibility = Visibility.Collapsed;
-
         }
 
         private void CheckIfAppleHit()
@@ -348,6 +372,7 @@ namespace SnakeGame
                 ScoreNumber.Content = Score;
                 ApplesNumber.Content = AppleCount;
 
+                System.Threading.Thread.Sleep(5);
                 AppleChange(XSpace);
             }
         }
