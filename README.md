@@ -3,8 +3,6 @@ Praktikaprojekt 2019 - Georg Daniel Vahtramäe.
 
 Snake-Game Project made in **Visual Studio 2017 with WPF**.
 
-This was my first personal *project*.
-
 ## Startup
 
 - Clone Repo.
